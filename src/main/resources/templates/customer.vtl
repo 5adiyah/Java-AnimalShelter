@@ -1,0 +1,11 @@
+Hello, $individualCustomer.getCustomerName();<br>
+You are looking for a $individualCustomer.getAnimalPreference();</br>
+Which is $individualCustomer.getBreedPreference();</br>
+
+#if ($individualCustomer.checkAdoptionStatus() == (0))
+  <a href="/animals">You have not yet adopted something small and fuzzy! Click here to find a friend.</a></br>
+#else
+  You already have a friend. Leave the rest for some other loser who needs to buy friends on the internet.
+#end
+
+<a href="/animals/:id/newCustomer">Adopt me!</a>
