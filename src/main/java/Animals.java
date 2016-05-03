@@ -73,13 +73,14 @@ public class Animals {
              this.getAnimalType().equals(newAnimal.getAnimalType()) &&
              this.getBreedType().equals(newAnimal.getBreedType()) &&
              this.getAdoptionStatus() == (newAnimal.getAdoptionStatus()) &&
+             this.getCustomerId() == (newAnimal.getCustomerId()) &&
              this.getId() == newAnimal.getId();
     }
   }
 
     public void save() {
       try(Connection con = DB.sql2o.open()) {
-        String sql = "INSERT INTO Animals(name, gender, date_of_admit, type_of_animal, breed, adoption_status) VALUES (:name, :gender, :date_of_admit, :type_of_animal, :breed, :adoption_status)";
+        String sql = "INSERT INTO Animals(name, gender, date_of_admit, type_of_animal, breed, adoption_status, customerid) VALUES (:name, :gender, :date_of_admit, :type_of_animal, :breed, :adoption_status, :customerid)";
         this.id = (int) con.createQuery(sql, true)
           .addParameter("name", this.name)
           .addParameter("gender", this.gender)
@@ -87,6 +88,7 @@ public class Animals {
           .addParameter("type_of_animal", this.type_of_animal)
           .addParameter("breed", this.breed)
           .addParameter("adoption_status", this.adoption_status)
+          .addParameter("customerid", this.customerid)
           .executeUpdate()
           .getKey();
       }
@@ -101,13 +103,13 @@ public class Animals {
         return animals;
       }
     }
-  //   public List<Customers> getCustomers() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT * FROM Customers where id=:id";
-  //     return con.createQuery(sql)
-  //       .addParameter("id", this.id)
-  //       .executeAndFetch(Customers.class);
-  //   }
-  // }
+    public List<Customers> getCustomers() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM Customers where id=:id";
+      return con.createQuery(sql)
+        .addParameter("id", this.id)
+        .executeAndFetch(Customers.class);
+    }
+  }
 
 }

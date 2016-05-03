@@ -22,7 +22,7 @@ public class AnimalTest {
   }
 
   @Test
-    public void Task_instantiatesCorrectly_true() {
+    public void Animals_instantiatesCorrectly_true() {
       Animals myAnimals = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 1);
       assertEquals(true, myAnimals instanceof Animals);
     }
@@ -52,7 +52,7 @@ public class AnimalTest {
   }
 
   @Test
-    public void save_CheckDescriptionsAretheSameInDB() {
+    public void save_CheckAnimalsAretheSameInDB() {
     Animals myAnimals = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 1);
     myAnimals.save();
     assertTrue(Animals.allAnimals().get(0).equals(myAnimals));
@@ -67,20 +67,20 @@ public class AnimalTest {
   }
 
   @Test
-  public void find_findsTaskInDatabase_true() {
+  public void find_findsAnimalsInDatabase_true() {
     Animals myAnimals = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 1);
     myAnimals.save();
     Animals savedAnimals = Animals.find(myAnimals.getId());
     assertTrue(myAnimals.equals(savedAnimals));
   }
 
- //  @Test
- //   public void save_savesCategoryIdIntoDB_true() {
- //   Category myCategory = new Category("Household chores");
- //   myCategory.save();
- //   Task myTask = new Task("Mow the lawn", 1, myCategory.getId());
- //   myTask.save();
- //   Task savedTask = Task.find(myTask.getId());
- //   assertEquals(savedTask.getCategoryId(), myCategory.getId());
- // }
+  @Test
+   public void save_savesCustomerIdIntoDB_true() {
+   Customers myCustomers = new Customers("Betty Sue", "123-456-7890", "bird", "parakeet", 0, 1);
+   myCustomers.save();
+   Animals myAnimals = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, myCustomers.getId());
+   myAnimals.save();
+   Animals savedAnimals = Animals.find(myAnimals.getId());
+   assertEquals(savedAnimals.getCustomerId(), myCustomers.getId());
+ }
 }
