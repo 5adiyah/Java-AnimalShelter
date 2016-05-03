@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AnimalTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2016-05-03T18:24:42" hostname="epicodus-55.local" time="0.178">
+  <properties/>
+  <testcase name="getAnimals_initiallyEmpty" classname="AnimalTest" time="0.101"/>
+  <testcase name="getAnimalInfo_returnsName_true" classname="AnimalTest" time="0.005"/>
+  <testcase name="save_CheckDescriptionsAretheSameInDB" classname="AnimalTest" time="0.028"/>
+  <testcase name="equals_returnsTrueIfAnimalsAretheSame" classname="AnimalTest" time="0.005"/>
+  <testcase name="save_assignsIdToObject" classname="AnimalTest" time="0.017"/>
+  <testcase name="Task_instantiatesCorrectly_true" classname="AnimalTest" time="0.005"/>
+  <testcase name="find_findsTaskInDatabase_true" classname="AnimalTest" time="0.015"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

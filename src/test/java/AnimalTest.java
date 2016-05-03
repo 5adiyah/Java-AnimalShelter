@@ -1,52 +1,86 @@
 import java.util.ArrayList;
-
+import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.util.List;
 
-@Test
-public void getName_returnsName_true(){
-  Category testCategory = new Category("Home");
-  assertEquals("Home". testCategory.getName());
-}
+public class AnimalTest {
 
-@Test
-public void getId_returnsCategoryId(){
-  Category testCategory = new Category("Home");
-  assertTru(Category.all().size() == testCategory.getId());
-}
+  @Before
+    public void setUp() {
+      DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/animal_shelter_test", null, null);
+    }
 
-@Test
-public void getTasks_initiallyReturnsEmptyArrayList(){
-  Category testCategory = new Category("Home");
-  assertTrue(testCategory.getTasks() instanceof ArrayList);
-}
-
-@Test
-public void all_returnsAllInstancesOfTask_true(){
-  Category testCategory = new Category("Home");
-  Category secondCategory = new Category("Home");
-  assertTrue(Category.all().contains(firstCategory());
-  assertTrue(Category.all().contains(secondCategory));
-}
-
-@Test
-  public void clear_removesAllCategoryInstancesFromMemory() {
-    Category testCategory = new Category("Home");
-    Category.clear();
-    assertEquals(Category.all().size(), 0);
+  @After
+  public void tearDown() {
+    try(Connection con = DB.sql2o.open()) {
+      String deleteAnimalsQuery = "DELETE FROM animals *;";
+      String deleteCustomersQuery = "DELETE FROM customers *;";
+      con.createQuery(deleteAnimalsQuery).executeUpdate();
+      con.createQuery(deleteCustomersQuery).executeUpdate();
+    }
   }
 
   @Test
-  public void find_returnsCategoryWithSameId() {
-    Category testCategory = new Category("Home");
-    assertEquals(Category.find(testCategory.getId()), testCategory);
+    public void Task_instantiatesCorrectly_true() {
+      Animals myAnimals = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 1);
+      assertEquals(true, myAnimals instanceof Animals);
+    }
+
+  @Test
+  public void getAnimalInfo_returnsName_true(){
+    Animals boogy = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 1);
+    assertEquals("Boogy", boogy.getAnimalName());
+    assertEquals("Male", boogy.getGender());
+    assertEquals("05-03-16", boogy.getDateOfAdmit());
+    assertEquals("Dog", boogy.getAnimalType());
+    assertEquals("Corgi", boogy.getBreedType());
+    assertEquals(0, boogy.getAdoptionStatus());
+    assertEquals(1, boogy.getCustomerId());
   }
 
   @Test
-  public void addTask_addsTaskToList() {
-    Category testCategory = new Category("Bob's Used Tasks");
-    Task testTask = new Task("Mow the lawn");
-    testCategory.addTask(testTask);
-    assertTrue(testCategory.getTasks().contains(testTask));
+  public void getAnimals_initiallyEmpty(){
+    assertEquals(Animals.allAnimals().size(), 0);
   }
+
+  @Test
+   public void equals_returnsTrueIfAnimalsAretheSame() {
+   Animals firstAnimals = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 1);
+   Animals secondAnimals = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 1);
+   assertTrue(firstAnimals.equals(secondAnimals));
+  }
+
+  @Test
+    public void save_CheckDescriptionsAretheSameInDB() {
+    Animals myAnimals = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 1);
+    myAnimals.save();
+    assertTrue(Animals.allAnimals().get(0).equals(myAnimals));
+  }
+
+  @Test
+  public void save_assignsIdToObject() {
+  Animals myAnimals = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 1);
+  myAnimals.save();
+  Animals savedAnimals = Animals.allAnimals().get(0);
+  assertEquals(myAnimals.getId(), savedAnimals.getId());
+  }
+
+  @Test
+  public void find_findsTaskInDatabase_true() {
+    Animals myAnimals = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 1);
+    myAnimals.save();
+    Animals savedAnimals = Animals.find(myAnimals.getId());
+    assertTrue(myAnimals.equals(savedAnimals));
+  }
+
+ //  @Test
+ //   public void save_savesCategoryIdIntoDB_true() {
+ //   Category myCategory = new Category("Household chores");
+ //   myCategory.save();
+ //   Task myTask = new Task("Mow the lawn", 1, myCategory.getId());
+ //   myTask.save();
+ //   Task savedTask = Task.find(myTask.getId());
+ //   assertEquals(savedTask.getCategoryId(), myCategory.getId());
+ // }
 }
