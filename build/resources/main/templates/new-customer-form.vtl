@@ -1,0 +1,50 @@
+<h1>Welcome To Noah's Ark Animal Shelter!</h1>
+
+<form action="/animals" method="post">
+  <label for="customerName">Name</label>
+  <input type="text" name="name" value="name"></input>
+  <label for="customerPhone">Phone</label>
+  <input type="text" name="phone" value="phone"></input>
+  <label for="animalPreference">Animal Preference</label>
+  <select id="preference" name="preference">
+    <option name="Dogs" id="Dogs" value="Dogs">Dogs</option>
+    <option name="Cats" id="Cats" value="Cats">Cats</option>
+    <option name="Bunnies" id="Bunnies" value="Bunnies">Bunnies</option>
+    <option name="Chimera" id="Chimera" value="Chimera">Chimera</option>
+  </select>
+
+  <label for="breedPreference">Breed Preference</label>
+    #if($preference.equals("Dogs"))
+      <select id="dogbreeds" name="preference">
+        <option name="Chihuahua" id="Chihuahua" value="Chihuahua">Chihuahua</option>
+        <option name="Pitbull" id="Pitbull" value="Pitbull">Pitbull</option>
+        <option name="Labrador" id="Labrador" value="Labrador">Labrador</option>
+        <option name="Wolf" id="Wolf" value="Wolf">Wolf</option>
+      </select>
+    #elseif($preference.equals("Cats"))
+      <select id="catbreeds" name="preference">
+        <option name="Tabby" id="Tabby" value="Tabby">Tabby</option>
+        <option name="Siamese" id="Siamese" value="Siamese">Siamese</option>
+        <option name="Calico" id="Calico" value="Calico">Calico</option>
+        <option name="Meerkat" id="Meerkat" value="Meerkat">Meerkat</option>
+      </select>
+    #elseif($preference.equals("Bunnies"))
+      <select id="bunnybreeds" name="preference">
+        <option name="White" id="White" value="White">White</option>
+        <option name="Black" id="Black" value="Black">Black</option>
+        <option name="Brown" id="Brown" value="Brown">Brown</option>
+        <option name="Bunnicula" id="Bunnicula" value="Bunnicula">Bunnicula</option>
+      </select>
+    #else
+      <select id="chimerabreeds" name="preference">
+        <option name="Chupacabra" id="Chupacabra" value="Chupacabra">Chupacabra</option>
+        <option name="Manticore" id="Manticore" value="Manticore">Manticore</option>
+        <option name="Sphynx" id="Sphynx" value="Sphynx">Sphynx</option>
+        <option name="Basilisk" id="Basilisk" value="Basilisk">Basilisk</option>
+      </select>
+    #end
+    <input type="hidden" name="newAdoptionStatus" id="newAdoptionStatus" value = "0">
+    <input type="hidden" name="newCustomerId" id="newCustomerId" value = "$customers.getId()">
+
+    <button type = "submit" class = "btn">Take me to the bunnies!</button>
+</form>
