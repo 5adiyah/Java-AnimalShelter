@@ -3,8 +3,13 @@ import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.List;
+import org.junit.rules.ExternalResource;
+import org.sql2o.*;
 
 public class CustomerTest {
+  // @Rule
+  // public DatabaseRule database = new DatabaseRule();
+
   @Before
     public void setUp() {
       DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/animal_shelter_test", null, null);

@@ -8,11 +8,16 @@ import java.util.Map;
 import java.util.HashMap;
 import spark.ModelAndView;
 import static org.fluentlenium.core.filter.FilterConstructor.*;
+import org.junit.rules.ExternalResource;
+import org.sql2o.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest extends FluentTest {
   public WebDriver webDriver = new HtmlUnitDriver();
+
+  // @Rule
+  // public DatabaseRule database = new DatabaseRule();
 
   @Override
   public WebDriver getDefaultDriver() {

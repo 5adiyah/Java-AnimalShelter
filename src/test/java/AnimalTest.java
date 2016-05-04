@@ -2,25 +2,28 @@ import java.util.ArrayList;
 import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
+import org.junit.rules.ExternalResource;
 import java.util.List;
 
 public class AnimalTest {
 
+  // @Rule
+  // public DatabaseRule database = new DatabaseRule();
+
   @Before
-    public void setUp() {
-      DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/animal_shelter_test", null, null);
-    }
+      public void setUp() {
+        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/animal_shelter_test", null, null);
+      }
 
-  @After
-  public void tearDown() {
-    try(Connection con = DB.sql2o.open()) {
-      String deleteAnimalsQuery = "DELETE FROM animals *;";
-      String deleteCustomersQuery = "DELETE FROM customers *;";
-      con.createQuery(deleteAnimalsQuery).executeUpdate();
-      con.createQuery(deleteCustomersQuery).executeUpdate();
+    @After
+    public void tearDown() {
+      try(Connection con = DB.sql2o.open()) {
+        String deleteAnimalsQuery = "DELETE FROM animals *;";
+        String deleteCustomersQuery = "DELETE FROM customers *;";
+        con.createQuery(deleteAnimalsQuery).executeUpdate();
+        con.createQuery(deleteCustomersQuery).executeUpdate();
+      }
     }
-  }
-
   @Test
     public void Animals_instantiatesCorrectly_true() {
       Animals myAnimals = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 1);
