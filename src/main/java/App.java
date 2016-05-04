@@ -76,6 +76,51 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+
+    get("/employee-view", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/employee-view.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/animals/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/new-pet-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/animals", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String animalName = request.queryParams("animalName");
+      String gender = request.queryParams("gender");
+      String admitDate = request.queryParams("admitDate");
+      String type = request.queryParams("type");
+      model.put("animalName", animalName);
+      model.put("gender", gender);
+      model.put("admitDate", admitDate);
+      model.put("type", type);
+      model.put("template", "templates/breed-type.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/animals2", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String animalName = request.queryParams("animalName");
+      String gender = request.queryParams("gender");
+      String type = request.queryParams("type");
+      String admitDate = request.queryParams("admitDate");
+      String breedType = request.queryParams("breedType");
+      int adoptionStatus = 0;
+      // int newCustomerId = Integer.parseInt(request.queryParams("newCustomerId"));
+      //Animals findAnimal = Animals.find(request.params(":id"));
+      //animalId = Integer.parseInt(animalId);
+      Animals newAnimal = new Animals(animalName, gender, admitDate, type, breedType, adoptionStatus, 3 );//change
+      newAnimal.save();
+      model.put("animal", newAnimal);
+      model.put("template", "templates/admin-success.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     get("/animals", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
 
@@ -107,10 +152,8 @@ public class App {
       //animalId = Integer.parseInt(animalId);
       Customers newCustomers = new Customers(customerName, phone, preference, breedPreference, adoptionStatus, 3 );//change
       newCustomers.save();
-
-
       model.put("customers", newCustomers);
-      model.put("template", "templates/success.vtl");
+      model.put("template", "templates/adopt.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -118,20 +161,5 @@ public class App {
 
 
 
-
-
-    // get("/input-page", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //
-    //   String userInput = request.queryParams("inputName");
-    //
-    //   App newApp = new App();
-    //
-    //   String varName = newApp.methodName(userInput);
-    //   model.put("varName", varName);
-    //
-    //   model.put("template", "templates/input-page.vtl");
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
   }
 }

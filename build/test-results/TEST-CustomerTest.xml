@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CustomerTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2016-05-04T21:39:42" hostname="epicodus-39.local" time="0.076">
+<testsuite name="CustomerTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2016-05-04T21:41:04" hostname="epicodus-39.local" time="0.079">
   <properties/>
-  <testcase name="save_savesCustomerIdIntoDB_true" classname="CustomerTest" time="0.017"/>
+  <testcase name="save_savesCustomerIdIntoDB_true" classname="CustomerTest" time="0.018"/>
   <testcase name="Customers_instantiatesCorrectly_true" classname="CustomerTest" time="0.005"/>
-  <testcase name="getCustomers_initiallyEmpty" classname="CustomerTest" time="0.008"/>
+  <testcase name="getCustomers_initiallyEmpty" classname="CustomerTest" time="0.009"/>
   <testcase name="getCustomerInfo_returnsName_true" classname="CustomerTest" time="0.004"/>
-  <testcase name="save_CheckCustomersAretheSameInDB" classname="CustomerTest" time="0.012"/>
+  <testcase name="save_CheckCustomersAretheSameInDB" classname="CustomerTest" time="0.013"/>
   <testcase name="find_findsCustomersInDatabase_true" classname="CustomerTest" time="0.012"/>
   <testcase name="save_assignsIdToObject" classname="CustomerTest" time="0.013"/>
   <testcase name="equals_returnsTrueIfCustomersAretheSame" classname="CustomerTest" time="0.004"/>

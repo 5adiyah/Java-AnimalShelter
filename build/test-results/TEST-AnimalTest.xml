@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="AnimalTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2016-05-04T21:39:39" hostname="epicodus-39.local" time="0.187">
+<testsuite name="AnimalTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2016-05-04T21:41:01" hostname="epicodus-39.local" time="0.19">
   <properties/>
-  <testcase name="save_savesCustomerIdIntoDB_true" classname="AnimalTest" time="0.117"/>
+  <testcase name="save_savesCustomerIdIntoDB_true" classname="AnimalTest" time="0.122"/>
   <testcase name="save_CheckAnimalsAretheSameInDB" classname="AnimalTest" time="0.015"/>
   <testcase name="getAnimals_initiallyEmpty" classname="AnimalTest" time="0.009"/>
-  <testcase name="getAnimalInfo_returnsName_true" classname="AnimalTest" time="0.004"/>
-  <testcase name="equals_returnsTrueIfAnimalsAretheSame" classname="AnimalTest" time="0.005"/>
-  <testcase name="Animals_instantiatesCorrectly_true" classname="AnimalTest" time="0.005"/>
-  <testcase name="save_assignsIdToObject" classname="AnimalTest" time="0.015"/>
-  <testcase name="find_findsAnimalsInDatabase_true" classname="AnimalTest" time="0.015"/>
+  <testcase name="getAnimalInfo_returnsName_true" classname="AnimalTest" time="0.005"/>
+  <testcase name="equals_returnsTrueIfAnimalsAretheSame" classname="AnimalTest" time="0.004"/>
+  <testcase name="Animals_instantiatesCorrectly_true" classname="AnimalTest" time="0.004"/>
+  <testcase name="save_assignsIdToObject" classname="AnimalTest" time="0.014"/>
+  <testcase name="find_findsAnimalsInDatabase_true" classname="AnimalTest" time="0.013"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

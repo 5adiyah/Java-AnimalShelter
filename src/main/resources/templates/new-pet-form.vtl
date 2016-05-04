@@ -1,0 +1,22 @@
+<h1>Add a Pet:</h1>
+
+<form action="/animals" method="post">
+  <label for="animalName">Name</label>
+  <input type="text" name="animalName" id="animalsname"></input>
+
+  <label for="gender">Gender</label>
+  <input type="text" name="gender" id="gender"></input>
+
+  <label for="admitDate">Today's Date</label>
+  <input type="text" name="admitDate" id="admitDate"></input>
+
+  <label for="animalType">Animal Type</label>
+  <select id="type" name="type">
+    <option name="Dogs" id="Dogs" value="Dogs">Dogs</option>
+    <option name="Cats" id="Cats" value="Cats">Cats</option>
+    <option name="Bunnies" id="Bunnies" value="Bunnies">Bunnies</option>
+    <option name="Chimera" id="Chimera" value="Chimera">Chimera</option>
+  </select>
+
+  <button type="submit" class="btn">Continue</button>
+</form>
