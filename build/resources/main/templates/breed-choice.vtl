@@ -1,0 +1,37 @@
+<form action="/customers2" method="post">
+  <label>Breed Preference</label>
+  #if($preference.equals("Dogs"))
+    <select id="dogbreeds" name="breedPreference">
+      <option name="Chihuahua" id="Chihuahua" value="Chihuahua">Chihuahua</option>
+      <option name="Pitbull" id="Pitbull" value="Pitbull">Pitbull</option>
+      <option name="Labrador" id="Labrador" value="Labrador">Labrador</option>
+      <option name="Wolf" id="Wolf" value="Wolf">Wolf</option>
+    </select>
+  #elseif($preference.equals("Cats"))
+    <select id="catbreeds" name="breedPreference">
+      <option name="Tabby" id="Tabby" value="Tabby">Tabby</option>
+      <option name="Siamese" id="Siamese" value="Siamese">Siamese</option>
+      <option name="Calico" id="Calico" value="Calico">Calico</option>
+      <option name="Meerkat" id="Meerkat" value="Meerkat">Meerkat</option>
+    </select>
+  #elseif($preference.equals("Bunnies"))
+    <select id="bunnybreeds" name="breedPreference">
+      <option name="White" id="White" value="White">White</option>
+      <option name="Black" id="Black" value="Black">Black</option>
+      <option name="Brown" id="Brown" value="Brown">Brown</option>
+      <option name="Bunnicula" id="Bunnicula" value="Bunnicula">Bunnicula</option>
+    </select>
+  #else
+    <select id="chimerabreeds" name="breedPreference">
+      <option name="Chupacabra" id="Chupacabra" value="Chupacabra">Chupacabra</option>
+      <option name="Manticore" id="Manticore" value="Manticore">Manticore</option>
+      <option name="Sphynx" id="Sphynx" value="Sphynx">Sphynx</option>
+      <option name="Basilisk" id="Basilisk" value="Basilisk">Basilisk</option>
+    </select>
+  #end
+  <input type="hidden" name="preference" id="preference" value = $preference>
+  <input type="hidden" name="customerName" id="customerName" value = $customerName>
+  <input type="hidden" name="phone" id="phone" value = $phone>
+  
+  <button type="submit" class="btn">Register!</button>
+</form>

@@ -44,6 +44,20 @@ public class Customers{
     return id;
   }
 
+  public String checkBreedPreference(String userInput){
+    if(userInput.equals("Dogs")){
+      return "dogbreeds";
+    } else if(userInput.equals("Cats")){
+      return "catbreeds";
+    } else if(userInput.equals("Bunnies")){
+      return "bunnybreeds";
+    } else if(userInput.equals("Chimera")){
+      return "chimerabreeds";
+    } else {
+      return "We don't have that breed";
+    }
+  }
+
   public static List<Customers> allCustomers() {
     String sql = "SELECT id, name, phone, animal_preference, breed_preference, adoption_status, animalid FROM customers";
     try(Connection con = DB.sql2o.open()) {

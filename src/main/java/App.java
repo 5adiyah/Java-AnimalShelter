@@ -22,25 +22,9 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-
-
-
-
-
-
-
-
     get("/customer/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/new-customer-form.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
-    get("/customers", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-
-      model.put("allCustomers", Customers.allCustomers());
-      model.put("template", "templates/customers.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -49,14 +33,34 @@ public class App {
       String customerName = request.queryParams("name");
       String phone = request.queryParams("phone");
       String preference = request.queryParams("preference");
+      model.put("customerName", customerName);
+      model.put("phone", phone);
+      model.put("preference", preference);
+      model.put("template", "templates/breed-choice.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/customers2", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String customerName = request.queryParams("customerName");
+      String phone = request.queryParams("phone");
+      String preference = request.queryParams("preference");
       String breedPreference = request.queryParams("breedPreference");
-      int adoptionStatus = Integer.parseInt(request.queryParams("newAdoptionStatus"));
+      int adoptionStatus = 0;
+      // int newCustomerId = Integer.parseInt(request.queryParams("newCustomerId"));
       //Animals findAnimal = Animals.find(request.params(":id"));
       //animalId = Integer.parseInt(animalId);
-      Customers newCustomers = new Customers(customerName, phone, preference, breedPreference, adoptionStatus, 3 );//change
-      newCustomers.save();
-      model.put("customers", newCustomers);
+      Customers newCustomer = new Customers(customerName, phone, preference, breedPreference, adoptionStatus, 3 );//change
+      newCustomer.save();
+      model.put("customer", newCustomer);
       model.put("template", "templates/success.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/customers", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("allCustomers", Customers.allCustomers());
+      model.put("template", "templates/customers.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -71,13 +75,6 @@ public class App {
       model.put("template", "templates/customer.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
-
-
-
-
-
-
-
 
     get("/animals", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
