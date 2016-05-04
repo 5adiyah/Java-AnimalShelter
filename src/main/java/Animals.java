@@ -61,6 +61,7 @@ public class Animals {
     }
   }
 
+
   @Override
   public boolean equals(Object otherAnimal){
     if (!(otherAnimal instanceof Animals)) {
