@@ -48,6 +48,14 @@ public class CustomerTest {
   }
 
   @Test
+  public void update_updatesCustomerId(){
+    Customers myCustomers = new Customers("Betty Sue", "123-456-7890", "bird", "parakeet", 0, 1);
+    myCustomers.save();
+    myCustomers.update(14);
+    assertEquals(14, Customers.find(myCustomers.getId()).getAnimalId());
+  }
+
+  @Test
    public void equals_returnsTrueIfCustomersAretheSame() {
    Customers firstCustomers = new Customers("Betty Sue", "123-456-7890", "bird", "parakeet", 0, 1);
    Customers secondCustomers = new Customers("Betty Sue", "123-456-7890", "bird", "parakeet", 0, 1);

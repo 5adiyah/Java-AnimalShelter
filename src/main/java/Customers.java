@@ -44,6 +44,16 @@ public class Customers{
     return id;
   }
 
+  public void update(int newAnimalId) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE customers SET animalid = :animalid WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("animalid", newAnimalId)
+        .addParameter("id", this.id)
+        .executeUpdate();
+    }
+}
+
   public String checkBreedPreference(String userInput){
     if(userInput.equals("Dogs")){
       return "dogbreeds";
