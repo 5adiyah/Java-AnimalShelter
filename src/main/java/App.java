@@ -117,10 +117,25 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/animals/view", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      model.put("allAnimals", Animals.allAnimals());
+      model.put("template", "templates/view-animals.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     get("/customers", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("allCustomers", Customers.allCustomers());
       model.put("template", "templates/customers.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/customers/view", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("allCustomers", Customers.allCustomers());
+      model.put("template", "templates/view-customers.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -135,6 +150,18 @@ public class App {
 
       model.put("individualCustomer", individualCustomer);
       model.put("template", "templates/customer.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/customer/view/:cId", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      Integer individualCustomerId = Integer.parseInt(request.params(":cId"));
+      Customers individualCustomer = Customers.find(individualCustomerId);
+
+
+      model.put("individualCustomer", individualCustomer);
+      model.put("template", "templates/view-customer.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -161,6 +188,17 @@ public class App {
       model.put("individualCustomer", individualCustomer);
       model.put("individualAnimal", individualAnimal);
       model.put("template", "templates/animal.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/animals/view/:aId", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      Integer individualAnimalId = Integer.parseInt(request.params(":aId"));
+      Animals individualAnimal = Animals.find(individualAnimalId);
+
+      model.put("individualAnimal", individualAnimal);
+      model.put("template", "templates/view-animal.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

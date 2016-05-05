@@ -1,0 +1,9 @@
+<h1>Welcome To Noah's Ark Animal Shelter!</h1>
+<p>Click an Animal for more details</p>
+  #foreach ($animal in $allAnimals)
+    <ul>
+      <li><a href="/animals/view/$animal.getId()">$animal.getAnimalName()</a></li>
+    </ul>
+  #end
+
+<a href="/employee-view"><button class="btn button"> Go Back</button></a>

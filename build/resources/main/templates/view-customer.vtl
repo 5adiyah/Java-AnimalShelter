@@ -1,0 +1,10 @@
+$individualCustomer.getCustomerName(),<br>
+They are looking for $individualCustomer.getBreedPreference() $individualCustomer.getAnimalPreference()</br>
+
+#if ($individualCustomer.checkAdoptionStatus() == (0))
+  They have not yet adopted something small and fuzzy!</br>
+#else
+  They already have a friend.
+#end
+
+<a href="/employee-view"><button class="btn button"> Go Back</button></a>

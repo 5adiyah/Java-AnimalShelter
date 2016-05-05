@@ -1,0 +1,9 @@
+<h1>Welcome To Noah's Ark Animal Shelter!</h1>
+<p>Click on Your Name</p>
+  #foreach ($customer in $allCustomers)
+    <ul>
+      <li><a href="/customer/view/$customer.getId()">$customer.getCustomerName()</a></li>
+    </ul>
+  #end
+
+<a href="/employee-view"><button class="btn button"> Go Back</button></a>
