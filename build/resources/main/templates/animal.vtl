@@ -2,4 +2,7 @@ $individualAnimal.getAnimalName()<br>
 $individualAnimal.getBreedType()<br>
 $individualAnimal.getGender()<br>
 
-<a href="/customer/$individualCustomer.getId()/animals/$individualAnimal.getId()/adopt">Adopt me!</a>
+<form method="post" action="/customer/$individualCustomer.getId()/animals/$individualAnimal.getId()/adopt">
+
+  <button type="submit" class="btn">Adopt me!</button>
+</form>

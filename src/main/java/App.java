@@ -209,6 +209,7 @@ public class App {
       Customers individualCustomer = Customers.find(individualCustomerId);
       Integer individualAnimalId = Integer.parseInt(request.params(":aId"));
       Animals individualAnimal = Animals.find(individualAnimalId);
+
       model.put("allAnimals", Animals.allAnimals());
       model.put("individualCustomer",individualCustomer);
       model.put("individualAnimal", individualAnimal);
@@ -216,9 +217,21 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // post route....
-    //   Animals animal = ...
-    //   animal.update(Integer.parseInt(request.params("cId")));
+    post("/customer/:cId/animals/:aId/adopt", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Integer individualCustomerId = Integer.parseInt(request.params(":cId"));
+      Customers individualCustomer = Customers.find(individualCustomerId);
+      Integer individualAnimalId = Integer.parseInt(request.params(":aId"));
+      Animals individualAnimal = Animals.find(individualAnimalId);
 
+      individualAnimal.update(individualCustomerId);
+      individualCustomer.update(individualAnimalId);
+
+      model.put("allAnimals", Animals.allAnimals());
+      model.put("individualCustomer",individualCustomer);
+      model.put("individualAnimal", individualAnimal);
+      model.put("template", "templates/adopt.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }
