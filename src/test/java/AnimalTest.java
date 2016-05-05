@@ -7,44 +7,54 @@ import java.util.List;
 
 public class AnimalTest {
 
-  // @Rule
-  // public DatabaseRule database = new DatabaseRule();
+  @Rule
+  public DatabaseRule database = new DatabaseRule();
 
-  @Before
-      public void setUp() {
-        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/animal_shelter_test", null, null);
+  // @Before
+  //     public void setUp() {
+  //       DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/animal_shelter_test", null, null);
+  //     }
+  //
+  //   @After
+  //   public void tearDown() {
+  //     try(Connection con = DB.sql2o.open()) {
+  //       String deleteAnimalsQuery = "DELETE FROM animals *;";
+  //       String deleteCustomersQuery = "DELETE FROM customers *;";
+  //       con.createQuery(deleteAnimalsQuery).executeUpdate();
+  //       con.createQuery(deleteCustomersQuery).executeUpdate();
+  //     }
+  //   }
+    @Test
+      public void Animals_instantiatesCorrectly_true() {
+        Animals myAnimals = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 1);
+        assertEquals(true, myAnimals instanceof Animals);
       }
 
-    @After
-    public void tearDown() {
-      try(Connection con = DB.sql2o.open()) {
-        String deleteAnimalsQuery = "DELETE FROM animals *;";
-        String deleteCustomersQuery = "DELETE FROM customers *;";
-        con.createQuery(deleteAnimalsQuery).executeUpdate();
-        con.createQuery(deleteCustomersQuery).executeUpdate();
-      }
-    }
-  @Test
-    public void Animals_instantiatesCorrectly_true() {
-      Animals myAnimals = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 1);
-      assertEquals(true, myAnimals instanceof Animals);
+    @Test
+    public void getAnimalInfo_returnsName_true(){
+      Animals boogy = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 1);
+      assertEquals("Boogy", boogy.getAnimalName());
+      assertEquals("Male", boogy.getGender());
+      assertEquals("05-03-16", boogy.getDateOfAdmit());
+      assertEquals("Dog", boogy.getAnimalType());
+      assertEquals("Corgi", boogy.getBreedType());
+      assertEquals(0, boogy.getAdoptionStatus());
+      assertEquals(1, boogy.getCustomerId());
     }
 
-  @Test
-  public void getAnimalInfo_returnsName_true(){
-    Animals boogy = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 1);
-    assertEquals("Boogy", boogy.getAnimalName());
-    assertEquals("Male", boogy.getGender());
-    assertEquals("05-03-16", boogy.getDateOfAdmit());
-    assertEquals("Dog", boogy.getAnimalType());
-    assertEquals("Corgi", boogy.getBreedType());
-    assertEquals(0, boogy.getAdoptionStatus());
-    assertEquals(1, boogy.getCustomerId());
-  }
+  // @Test
+  // public void getAnimals_initiallyEmpty(){
+  //   assertEquals(Animals.getCustomerId(), 0);
+  // }
 
   @Test
-  public void getAnimals_initiallyEmpty(){
-    assertEquals(Animals.allAnimals().size(), 0);
+  public void update_updatesCustomerId(){
+    Animals myAnimals = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 13);
+    // Customers myCustomers = new Customers("Betty Sue", "123-456-7890", "bird", "parakeet", 0, 1);
+    // myCustomers.save();
+    myAnimals.update(14);
+    myAnimals.save();
+    assertEquals(14, Animals.find(myAnimals.getId().getCustomerId()));
   }
 
   @Test

@@ -54,6 +54,18 @@ public class Animals {
     return customerid;
   }
 
+  public void update(int newCustomerId) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE animals SET customerid = :customerid WHERE id = :id;";
+      con.createQuery(sql)
+        .addParameter("customerid", newCustomerId)
+        .addParameter("id", this.id)
+        .executeUpdate();
+    }
+  }
+
+
+
   public static List<Animals> allAnimals() {
     String sql = "SELECT id, name, gender, date_of_admit, type_of_animal, breed, adoption_status, customerid FROM animals";
     try(Connection con = DB.sql2o.open()) {

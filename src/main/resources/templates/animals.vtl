@@ -2,6 +2,6 @@
 <p>Click an Animal for more details</p>
   #foreach ($animal in $allAnimals)
     <ul>
-      <li><a href="/animals/$animal.getId()">$animal.getAnimalName()</a></li>
+      <li><a href="/customer/$individualCustomer.getId()/animals/$animal.getId()">$animal.getAnimalName()</a></li>
     </ul>
   #end

@@ -16,17 +16,33 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/employee-view", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/employee-view.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     get("/customer-type", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/customer-type.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/customer/new", (request, response) -> {
+
+
+    get("/customers/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/new-customer-form.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/animals/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/new-pet-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
 
     post("/customers", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
@@ -39,6 +55,22 @@ public class App {
       model.put("template", "templates/breed-choice.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    post("/animals", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String animalName = request.queryParams("animalName");
+      String gender = request.queryParams("gender");
+      String admitDate = request.queryParams("admitDate");
+      String type = request.queryParams("type");
+      model.put("animalName", animalName);
+      model.put("gender", gender);
+      model.put("admitDate", admitDate);
+      model.put("type", type);
+      model.put("template", "templates/breed-type.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
 
     post("/customers2", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
@@ -54,75 +86,6 @@ public class App {
       newCustomer.save();
       model.put("customer", newCustomer);
       model.put("template", "templates/success.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
-    get("/customers", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      model.put("allCustomers", Customers.allCustomers());
-      model.put("template", "templates/customers.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
-    get("/customer/:id", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-
-      Integer individualCustomerId = Integer.parseInt(request.params(":id"));
-
-      Customers individualCustomer = Customers.find(individualCustomerId);
-      model.put("individualCustomer", individualCustomer);
-
-      model.put("template", "templates/customer.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
-    get("/customer/:id/animals", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      Integer individualCustomerId = Integer.parseInt(request.params(":id"));
-
-      Customers individualCustomer = Customers.find(individualCustomerId);
-      model.put("allAnimals", Animals.allAnimals());
-      model.put("template", "templates/animals.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
-    get("/customer/:id/animals/:id/adopt", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      Integer individualCustomerId = Integer.parseInt(request.params(":id"));
-      Customers individualCustomer = Customers.find(individualCustomerId);
-
-      Integer individualAnimalId = Integer.parseInt(request.params(":id"));
-      Animals individualAnimal = Animals.find(individualAnimalId);
-
-      model.put("individualCustomer",individualCustomer);
-      model.put("individualAnimal", individualAnimal);
-      model.put("template", "templates/adopt.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
-    get("/employee-view", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      model.put("template", "templates/employee-view.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
-    get("/animals/new", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      model.put("template", "templates/new-pet-form.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
-    post("/animals", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      String animalName = request.queryParams("animalName");
-      String gender = request.queryParams("gender");
-      String admitDate = request.queryParams("admitDate");
-      String type = request.queryParams("type");
-      model.put("animalName", animalName);
-      model.put("gender", gender);
-      model.put("admitDate", admitDate);
-      model.put("type", type);
-      model.put("template", "templates/breed-type.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -144,6 +107,8 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+
+
     get("/animals", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
 
@@ -152,18 +117,70 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/customer/:id/animals/:id", (request, response) -> {
+    get("/customers", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("allCustomers", Customers.allCustomers());
+      model.put("template", "templates/customers.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
+
+    get("/customer/:cId", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
 
-      Integer individualAnimalId = Integer.parseInt(request.params(":id"));
+      Integer individualCustomerId = Integer.parseInt(request.params(":cId"));
+      Customers individualCustomer = Customers.find(individualCustomerId);
 
+
+      model.put("individualCustomer", individualCustomer);
+      model.put("template", "templates/customer.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/customer/:cId/animals", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      Integer individualCustomerId = Integer.parseInt(request.params(":cId"));
+      Customers individualCustomer = Customers.find(individualCustomerId);
+
+      model.put("individualCustomer", individualCustomer);
+      model.put("allAnimals", Animals.allAnimals());
+      model.put("template", "templates/animals.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/customer/:cId/animals/:aId", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      Integer individualCustomerId = Integer.parseInt(request.params(":cId"));
+      Customers individualCustomer = Customers.find(individualCustomerId);
+      Integer individualAnimalId = Integer.parseInt(request.params(":aId"));
       Animals individualAnimal = Animals.find(individualAnimalId);
-      model.put("individualAnimal", individualAnimal);
 
+      model.put("individualCustomer", individualCustomer);
+      model.put("individualAnimal", individualAnimal);
       model.put("template", "templates/animal.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/customer/:cId/animals/:aId/adopt", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      Integer individualCustomerId = Integer.parseInt(request.params(":cId"));
+      Customers individualCustomer = Customers.find(individualCustomerId);
+      Integer individualAnimalId = Integer.parseInt(request.params(":aId"));
+      Animals individualAnimal = Animals.find(individualAnimalId);
+      model.put("allAnimals", Animals.allAnimals());
+      model.put("individualCustomer",individualCustomer);
+      model.put("individualAnimal", individualAnimal);
+      model.put("template", "templates/adopt.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    // post route....
+    //   Animals animal = ...
+    //   animal.update(Integer.parseInt(request.params("cId")));
 
   }
 }

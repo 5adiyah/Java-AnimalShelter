@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest extends FluentTest {
   public WebDriver webDriver = new HtmlUnitDriver();
-
+  //
   // @Rule
   // public DatabaseRule database = new DatabaseRule();
 
@@ -76,17 +76,5 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Timmy");
   }
 
-  @Test
-  public void makeSureCustomerInfoPopulated(){
-    goTo("http://localhost:4567/customer/new");
-    fill("#name").with("Bob");
-    fill("#phone").with("2222222222");
-    fillSelect("#preference").withValue("Cats");
-    submit(".btn");
-    fillSelect("#catbreeds").withValue("Tabby");
-    submit(".btn");
-    click("a", withText("Click Here"));
-    click("a", withText("Bob"));
-    assertThat(pageSource()).contains("Tabby");
-  }
+  
 }
