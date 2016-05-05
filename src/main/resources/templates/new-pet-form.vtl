@@ -1,22 +1,25 @@
 <h1>Add a Pet:</h1>
-
+<div class ="diet-form starwars">
 <form action="/animals" method="post">
+  <fieldset class="form-group">
   <label for="animalName">Name</label>
-  <input type="text" name="animalName" id="animalsname"></input>
+  <input type="text" name="animalName" id="animalsname" class="form-control"></input>
 
   <label for="gender">Gender</label>
-  <input type="text" name="gender" id="gender"></input>
+  <input type="text" name="gender" id="gender" class="form-control"></input>
 
   <label for="admitDate">Today's Date</label>
-  <input type="text" name="admitDate" id="admitDate"></input>
+  <input type="text" name="admitDate" id="admitDate" class="form-control"></input>
 
   <label for="animalType">Animal Type</label>
-  <select id="type" name="type">
+  <select id="type" name="type" class="form-control">
     <option name="Dogs" id="Dogs" value="Dogs">Dogs</option>
     <option name="Cats" id="Cats" value="Cats">Cats</option>
     <option name="Bunnies" id="Bunnies" value="Bunnies">Bunnies</option>
     <option name="Chimera" id="Chimera" value="Chimera">Chimera</option>
   </select>
-
+<p>&nbsp;</p>
   <button type="submit" class="btn">Continue</button>
+</fieldset>
 </form>
+</div>

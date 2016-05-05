@@ -1,19 +1,22 @@
-<h1>Welcome To Noah's Ark Animal Shelter!</h1>
+<h1 class = "center starwars">Welcome To Noah's Ark Animal Shelter!</h1>
 
+<div class ="diet-form starwars">
 <form action="/customers" method="post">
-  <label for="customerName">Name</label>
-  <input type="text" name="name" id="name"></input>
+  <fieldset class="form-group">
+    <label for="customerName">Name</label>
+    <input type="text" name="name" id="name" class="form-control"></input>
 
-  <label for="customerPhone">Phone</label>
-  <input type="text" name="phone" id="phone"></input>
+    <label for="customerPhone">Phone</label>
+    <input type="text" name="phone" id="phone" class="form-control"></input>
 
-  <label for="animalPreference">Animal Preference</label>
-  <select id="preference" name="preference">
-    <option name="Dogs" id="Dogs" value="Dogs">Dogs</option>
-    <option name="Cats" id="Cats" value="Cats">Cats</option>
-    <option name="Bunnies" id="Bunnies" value="Bunnies">Bunnies</option>
-    <option name="Chimera" id="Chimera" value="Chimera">Chimera</option>
-  </select>
-
-  <button type="submit" class="btn">Continue</button>
+    <label for="animalPreference">Animal Preference</label>
+    <select id="preference" name="preference"  class="form-control">
+      <option name="Dogs" id="Dogs" value="Dogs">Dogs</option>
+      <option name="Cats" id="Cats" value="Cats">Cats</option>
+      <option name="Bunnies" id="Bunnies" value="Bunnies">Bunnies</option>
+      <option name="Chimera" id="Chimera" value="Chimera">Chimera</option>
+    </select>
+  </fieldset>
+  <button type="submit" class="btn" class = "diet">Continue</button>
 </form>
+</diet>

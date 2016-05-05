@@ -1,0 +1,69 @@
+body{
+  background-color: black;
+  color: yellow;
+  margin-top: 3%;
+}
+.center{
+  text-align: center;
+}
+
+
+.starwars{
+  font-family: 'Stalinist One', cursive;
+}
+
+button {
+  background-color: yellow;
+  width: 400px;
+  height: 55px;
+  display: block;
+  font-size: 15px;
+  color: black;
+  font-family: 'Stalinist One', cursive;
+}
+
+button a{
+  font-size: 15px;
+  color: black;
+  font-family: 'Stalinist One', cursive;
+}
+
+a {
+  text-decoration: none;
+  color: yellow;
+}
+
+li {
+  list-style-type: none;
+}
+
+.diet {
+  width: 150px;
+}
+
+.diet-form {
+  width: 60%;
+  margin: auto;
+}
+
+.top-right{
+  float: right;
+  margin-top:100px;
+  margin-right:500px;
+  margin-top:150px;
+}
+
+.bottom-right{
+  float: right;
+  margin-top:-300px;
+  margin-right:500px;
+}
+
+#death_star{
+  width: 800px;
+  margin-left:200px;
+}
+
+#float-none {
+  float:none;
+}
