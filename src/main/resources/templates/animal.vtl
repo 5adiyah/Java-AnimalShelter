@@ -1,7 +1,25 @@
 <h3>$individualAnimal.getAnimalName()</h3>
+<h3>$individualAnimal.getAnimalType()</h3>
 <h3>$individualAnimal.getBreedType()</h3>
 <h3>$individualAnimal.getGender()</h3>
 
+#if ($individualAnimal.getAnimalType().equals("Dogs"))
+  <img src = "/dog.png"></img>
+#elseif ($individualAnimal.getAnimalType().equals("Cats"))
+  <img src = "/cat.png"></img>
+#elseif ($individualAnimal.getAnimalType().equals("Bunnies"))
+  <img src = "/bunny.png"></img>
+#end
+  #if ($individualAnimal.getBreedType().equals("Chupacabra"))
+  <img src = "/chupacabra.png"></img>
+  I don't think these will help rehabilitate you from the Dark Side, but who am I to judge?
+  #elseif ($individualAnimal.getBreedType().equals("Manticore"))
+  <img src = "/manticore.png"></img>
+  #elseif ($individualAnimal.getBreedType().equals("Sphynx"))
+  <img src = "/sphinx.png"></img>
+  #elseif ($individualAnimal.getBreedType().equals("Basilisk"))
+  <img src = "/basilisk.png"></img>
+#end
 <form method="post" action="/customer/$individualCustomer.getId()/animals/$individualAnimal.getId()/adopt">
 
   <button type="submit" class="btn">Adopt me!</button>

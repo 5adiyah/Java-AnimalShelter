@@ -2,4 +2,24 @@ $individualAnimal.getAnimalName()<br>
 $individualAnimal.getBreedType()<br>
 $individualAnimal.getGender()<br>
 
+
+#if ($individualAnimal.getAnimalType().equals("Dogs"))
+  <img src = "/dog.png"></img>
+#elseif ($individualAnimal.getAnimalType().equals("Cats"))
+  <img src = "/cat.png"></img>
+#elseif ($individualAnimal.getAnimalType().equals("Bunnies"))
+  <img src = "/bunny.png"></img>
+#end
+  #if ($individualAnimal.getBreedType().equals("Chupacabra"))
+  <img src = "/chupacabra.png"></img>
+  I don't think these will help rehabilitate you from the Dark Side, but who am I to judge?
+  #elseif ($individualAnimal.getBreedType().equals("Manticore"))
+  <img src = "/manticore.png"></img>
+  #elseif ($individualAnimal.getBreedType().equals("Sphynx"))
+  <img src = "/sphinx.png"></img>
+  #elseif ($individualAnimal.getBreedType().equals("Basilisk"))
+  <img src = "/basilisk.png"></img>
+#end
+
+
 <a href="/employee-view"><button class="btn button"> Go Back</button></a>
