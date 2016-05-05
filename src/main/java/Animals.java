@@ -56,7 +56,7 @@ public class Animals {
 
   public void update(int newCustomerId) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE animals SET customerid = :customerid WHERE id = :id;";
+      String sql = "UPDATE animals SET customerid = :customerid WHERE id = :id";
       con.createQuery(sql)
         .addParameter("customerid", newCustomerId)
         .addParameter("id", this.id)

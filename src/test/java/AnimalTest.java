@@ -9,7 +9,7 @@ public class AnimalTest {
 
   @Rule
   public DatabaseRule database = new DatabaseRule();
-
+  //
   // @Before
   //     public void setUp() {
   //       DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/animal_shelter_test", null, null);
@@ -52,9 +52,9 @@ public class AnimalTest {
     Animals myAnimals = new Animals("Boogy", "Male","05-03-16","Dog","Corgi", 0, 13);
     // Customers myCustomers = new Customers("Betty Sue", "123-456-7890", "bird", "parakeet", 0, 1);
     // myCustomers.save();
-    myAnimals.update(14);
     myAnimals.save();
-    assertEquals(14, Animals.find(myAnimals.getId().getCustomerId()));
+    myAnimals.update(14);
+    assertEquals(14, Animals.find(myAnimals.getId()).getCustomerId());
   }
 
   @Test
